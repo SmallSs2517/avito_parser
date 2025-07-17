@@ -55,7 +55,8 @@ class AveragePrices(Base):
         self.model_id = model_id
 
     def __repr__(self):
-        info: str = f'Дата: {self.date},\nМодель ID: {self.follow_models_id},\nЦена: {self.average_price}'
+        info: str = f'ID: {self.id},\nДата: {self.on_create.isoformat(sep=' ', timespec='minutes')},\nМодель ID: {self.model_id},\nЦена: {self.average_price}'
+
         return info
 
 

@@ -30,8 +30,12 @@ class SyncORM:
             session.commit()
 
     @staticmethod
-    def select_average_prices():
-        pass
+    def select_last_average_price(model_id: int=1) -> str:
+        stmt = select(AveragePrices).where(AveragePrices.model_id == model_id).order_by(AveragePrices.id.desc()).limit(1)
+        with SessionDB() as session:
+            res = session.scalar(stmt)
+            result = res.__repr__()
+        return result
 
     @staticmethod
     def select_all_models() -> list[dict]:

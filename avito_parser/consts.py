@@ -30,6 +30,9 @@ HEADERS = {
     'accept-language': 'ru-RU,ru;q=0.9',
 }
 
+COMMANDS = {'WELCOME': 'Введите "get_last", чтобы получить последнее среднее',
+            
+            }
 
 INCOMPREHENSIBLE = {'25.12.24': 
                     'https://www.avito.ru/sankt-peterburg/avtomobili/volkswagen/polo/v_restayling-ASgBAgICA0Tgtg24mSjitg2IrSjqtg3A8Sg?radius=300&searchRadius=300'}

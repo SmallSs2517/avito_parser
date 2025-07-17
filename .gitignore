@@ -2,6 +2,9 @@ include/
 lib/
 scripts/
 pyvenv.cfg
+Dockerfile
+*.env
+*.idea
 
 avito_parser/src/
 avito_parser/db_models/__pycache__/

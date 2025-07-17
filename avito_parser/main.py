@@ -2,10 +2,12 @@ from consts import *
 from time import sleep
 from session import session_handler
 from parcer import get_prices
+from tg_bot import bot_pooling
 from data_handler import db_handler
 from datetime import datetime
 from threading import Thread
 from queue import SimpleQueue
+
 
 db_in_queue = SimpleQueue()
 db_work_out_queue = SimpleQueue()
@@ -32,13 +34,21 @@ if __name__ == "__main__":
                        args=(db_in_queue, db_work_out_queue, db_report_out_queue),
                        daemon=True
                        )
+    
+    tgbot_thread = Thread(target=bot_pooling,
+                          name='tgbot_thread',
+                          args=(db_in_queue, db_report_out_queue),
+                          daemon=True
+                          )
+
 
     try:
         db_thread.start()
+        tgbot_thread.start()
         
         while True:
             print(f'\n{datetime.now().time().isoformat('seconds')}\nПоехали!!!\n') # Лог в консоль
-            
+
             db_in_queue.put(('gm',))
             models = db_work_out_queue.get()
             target_urls = build_url(BASE_URL, models)
