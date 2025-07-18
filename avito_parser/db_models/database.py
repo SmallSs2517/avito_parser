@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from db_models.tables import FollowModels, AveragePrices, Base
 
 DB_NAME = 'database.sqlite'
-sync_engine = create_engine(f'sqlite:///src/{DB_NAME}', echo=True)
+sync_engine = create_engine(f'sqlite:///avito_parser/src/{DB_NAME}', echo=True)
 SessionDB = sessionmaker(bind=sync_engine)
 
 
