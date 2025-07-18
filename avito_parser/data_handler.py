@@ -57,7 +57,8 @@ def db_handler(in_queue: SimpleQueue, work_out_queue: SimpleQueue, report_out_qu
                 report_out_queue.put(resp)
             
             elif task[0] == 'gaa':
-                pass
+                resp = SyncORM.select_all_average_prices(task[1])
+                report_out_queue.put(resp)
             
             elif task[0] == 'gads':
                 pass

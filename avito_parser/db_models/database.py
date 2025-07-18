@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from db_models.tables import FollowModels, AveragePrices, Base
 
 DB_NAME = 'database.sqlite'
-sync_engine = create_engine(f'sqlite:///avito_parser/src/{DB_NAME}', echo=True)
+sync_engine = create_engine(f'sqlite:///src/{DB_NAME}', echo=True)
 SessionDB = sessionmaker(bind=sync_engine)
 
 
@@ -35,6 +35,17 @@ class SyncORM:
         with SessionDB() as session:
             res = session.scalar(stmt)
             result = res.__repr__()
+        return result
+    
+    @staticmethod
+    def select_all_average_prices(model_id: int=1) -> str:
+        stmt = select(AveragePrices).where(AveragePrices.model_id == model_id)
+        with SessionDB() as session:
+            res = session.scalars(stmt)
+            result = []
+            for i in res:
+                result.append(i.__repr__())
+            result = '\n'.join(result)
         return result
 
     @staticmethod

@@ -1,3 +1,4 @@
+print("main was started")
 from consts import *
 from time import sleep
 from session import session_handler

@@ -30,7 +30,8 @@ HEADERS = {
     'accept-language': 'ru-RU,ru;q=0.9',
 }
 
-COMMANDS = {'WELCOME': 'Введите "get_last", чтобы получить последнее среднее',
+COMMANDS = {'WELCOME': '"get last" - чтобы получить последнее среднее\n\
+            get all avg - чтобы получить все средние',
             
             }
 
